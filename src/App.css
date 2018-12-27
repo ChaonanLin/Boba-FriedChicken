@@ -1,0 +1,209 @@
+#logo img {
+    width:25%;
+    margin: 20px 37.5% 10px;
+
+}
+
+#maincontent {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+#banner {
+    background-image: url("./img/banner3.png");
+    width: 100%;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#banner h1 {
+    width: 45%;
+    text-align: right;
+    margin: 223px auto 229px;
+    font-size: 3em;
+}
+
+.select-box {
+    width:55%;
+    display: inline-block;
+}
+
+.select-box--box {
+    width: 45%;
+    position: relative;
+    left: 0;
+    margin: 226px auto 226px 15px;
+}
+
+/* dropdown css */
+
+* {
+    box-sizing: border-box;
+}
+
+
+.select-box--arrow {
+    width:3em;
+    height:3em;
+    margin:0;
+    padding:0;
+    display: inline-block;
+    background-color: #aaa;
+    position: absolute;
+    right:-1px;
+    top:-1px;
+}
+
+.select-box--arrow-down {
+    position: absolute;
+    top: 1em;
+    left: 0.7em;
+    width: 0;
+    height: 0;
+    border-left: 0.8em solid transparent;
+    border-right: 0.8em solid transparent;
+    border-top: 1em solid #fff;
+}
+
+.select-box--arrow-up {
+    position: absolute;
+    top: 1em;
+    left: 0.7em;
+    width: 0;
+    height: 0;
+    border-left: 0.8em solid transparent;
+    border-right: 0.8em solid transparent;
+    border-bottom: 1em solid #fff;
+}
+
+.select-box--container {
+    border: 2px solid #aaa;
+    width: 100%;
+    margin:0;
+    padding:0;
+    height: 3em;
+}
+
+.select-box--selected-item {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 6px 12px;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+
+.select-box--items {
+    border: 2px solid #aaa;
+}
+
+.select-box--items button {
+    border-bottom: 1px solid #aaa;
+    padding: 6px;
+    padding-left: 10px;
+    background-color: white;
+}
+
+.itemslist {
+    font-size: 1.2em;
+    width:100%;
+    text-align: left;
+}
+
+/* ListView CSS */
+.Container {
+    width:48%;
+    margin-top: 20px;
+    position: relative;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0 5% 0 2%;
+}
+
+
+.card {
+    display: flex;
+    flex-wrap: wrap; */
+    background-color: #fff;
+    border: 2px solid #ccc;
+    font-family: Arial,sans-serif;
+    margin: 20px auto 30px;
+    min-height: 180px;
+    padding: 0 3% 25px;
+    text-align: left;
+    width: 90%;
+    position: relative;
+
+}
+
+.restaurant-image {
+    background-color: #ccc;
+    display: block;
+    margin: 10px 2%;
+    width: 30%;
+    height: 150px;
+    position: absolute;
+    right:2%;
+}
+
+.card h1 {
+    margin: 20px 0 0;
+    width: 60%;
+    font-size: 25px;
+}
+
+.card p {
+    margin: 0;
+    width: 60%
+}
+.rate {
+    position: absolute;
+    bottom: 20px;
+    width: 60%
+}
+.checked {
+    color: orange;
+}
+
+button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+
+.changepage {
+    right:10%;
+    position:absolute;
+
+}
+.changepage p {
+    display: inline-block;
+}
+
+.changepage h4 {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.previous {
+  background-color: #4CAF50;
+  color: black;
+  margin-right: 10px;
+}
+
+.next {
+  background-color: #4CAF50;
+  color: white;
+  margin-left: 10px;
+}
+
+.end {
+    background-color:#f1f1f1;
+}
