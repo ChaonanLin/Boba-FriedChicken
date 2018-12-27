@@ -21,7 +21,7 @@ class App extends React.Component {
         }
     }
 
-
+//when user changed seach terms, it reset the fetch query state and refetch restaurant
     changeQuery= (value) => {
         this.setState({
             query:value,
@@ -34,6 +34,7 @@ class App extends React.Component {
     }
 
     goNext= ()=>{
+        //the fetch limit is set to 10 due to the API call quota, so there will be max 3 pages
         if (this.state.page===3) {
             alert("This is the end of the list.")
         } else {
@@ -58,7 +59,6 @@ class App extends React.Component {
         }
     }
 
-
     onMarkerClick = (props, marker, e) =>{
         this.setState({
           selectedPlace: props,
@@ -76,6 +76,7 @@ class App extends React.Component {
       }
     };
 
+//Haven't figure out how to link ListView click with the corresponding markers
     onListClicked = (e) => {
         console.log(e);
         // this.setState({
@@ -88,6 +89,47 @@ class App extends React.Component {
         this.FetchRestaurant();
     }
 
+//fetch restaurant data using Foursquare Place API
+    FetchRestaurant= () => {
+        let setRestaurantState = this.setState.bind(this);
+
+        const venuesEndpoint = 'https://api.foursquare.com/v2/venues/explore?';
+        const params = {
+          client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
+          client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
+          limit: 10,
+          v: '20181227',
+          //fetch restaurant data according to state query
+          query: this.state.query,
+          //my home ll
+          ll: '37.332258, -122.012124'
+        };
+
+        //divide the fetched response by 4
+        const start= (this.state.page - 1)*4
+        const end =(this.state.page -1)*4+4
+
+       fetch(venuesEndpoint + new URLSearchParams(params), {
+          method: 'GET'
+      }).then(
+            response => response.json()
+        ).then(
+            //slice out the current page's restaurant
+            response => response.response.groups[0].items.slice(start,end)
+        ).then(
+          response => {
+              setRestaurantState({restaurant: response});
+              //Pass restaurant date to FrechPhoto()
+              this.FetchPhoto(response);
+              //Pass restaurant date to FrechRating()
+              this.FetchRatings(response);
+          }
+      ).catch(() => {
+        alert("Foursquare API fetch error.");
+        });
+    }
+
+//fetch restaurant photo using Foursquare photo API, accourding to restaurant venue Id fetched from FetchRestaurant
     FetchPhoto = (items) => {
         let setPhotoState = this.setState.bind(this);
 
@@ -95,11 +137,9 @@ class App extends React.Component {
           client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
           client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
           limit: 1,
-          v: '20181220',
+          v: '20181227',
         };
         items.forEach((item, index) => {
-            // console.log(item);
-            // const photoArray = [];
             const photoEndpoint = 'https://api.foursquare.com/v2/venues/' + item.venue.id  + '/photos?';
             fetch(photoEndpoint + new URLSearchParams(params), {
                 method: 'GET'
@@ -113,13 +153,13 @@ class App extends React.Component {
             });
         })
     }
-
+//fetch restaurant rating using Foursquare photo API, accourding to restaurant venue Id fetched from FetchRestaurant
     FetchRatings = (items) => {
         let setRatingState=this.setState.bind(this)
         const params = {
           client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
           client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
-          v: '20181220',
+          v: '20181227',
         };
 
         items.forEach((item,index)=>{
@@ -138,38 +178,6 @@ class App extends React.Component {
                console.log("foursquare API fetch error, rating is not available");
                });
         })
-    }
-
-    FetchRestaurant= () => {
-        let setRestaurantState = this.setState.bind(this);
-
-        const venuesEndpoint = 'https://api.foursquare.com/v2/venues/explore?';
-        const params = {
-          client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
-          client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
-          limit: 10,
-          v: '20181220',
-          query: this.state.query,
-          ll: '37.332258, -122.012124'
-        };
-        const start= (this.state.page - 1)*4
-        const end =(this.state.page -1)*4+4
-
-       fetch(venuesEndpoint + new URLSearchParams(params), {
-          method: 'GET'
-      }).then(
-            response => response.json()
-        ).then(
-            response => response.response.groups[0].items.slice(start,end)
-        ).then(
-          response => {
-              setRestaurantState({restaurant: response});
-              this.FetchPhoto(response);
-              this.FetchRatings(response);
-          }
-      ).catch(() => {
-        console.log("Foursquare API fetch error.");
-        });
     }
 
 

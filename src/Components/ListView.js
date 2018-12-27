@@ -22,6 +22,7 @@ class ListView extends React.Component {
                               rating={this.props.ratinglist[index]}
                               name={restaurant.venue.name}
                               address={restaurant.venue.location.address}
+                              //when
                               onCardClick={this.props.onListClicked}
                           />
                       ))}

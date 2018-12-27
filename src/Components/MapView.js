@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import '../App.css';
 import ReactDOM from 'react-dom';
-
+//used [Google-maps-react](https://github.com/fullstackreact/google-maps-react#marker) library
+//to load Google map APIs and add Marker and InfoWindow components.
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 
 
