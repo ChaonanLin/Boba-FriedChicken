@@ -191,7 +191,7 @@ class App extends React.Component {
                 items= {[
                         {value:'Boba', id:1},
                         {value:'Fried Chicken', id:2},
-                        {value:'Boba & Fried Chicken', id:3},
+                        {value:'Boba and Fried Chicken', id:3},
                     ]}
                 onChangeQuery = {
                     this.changeQuery
