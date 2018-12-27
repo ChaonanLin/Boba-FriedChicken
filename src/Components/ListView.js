@@ -13,7 +13,7 @@ class ListView extends React.Component {
         const restaurant= this.props.restaurantlist;
 
         return(
-            <div className="Container">
+            <div className="listContainer">
                 <ul>
                     {restaurant.map((restaurant,index)=>(
                           <RestaurantCard
@@ -22,7 +22,6 @@ class ListView extends React.Component {
                               rating={this.props.ratinglist[index]}
                               name={restaurant.venue.name}
                               address={restaurant.venue.location.address}
-                              //when
                               onCardClick={this.props.onListClicked}
                           />
                       ))}

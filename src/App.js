@@ -3,6 +3,9 @@ import Banner from './Components/Banner.js'
 import ListView from './Components/ListView.js'
 import MapView from './Components/MapView'
 import './App.css'
+import {GoogleApiWrapper} from 'google-maps-react'
+
+
 
 class App extends React.Component {
     constructor(props) {
@@ -174,7 +177,7 @@ class App extends React.Component {
                    new_rating[index] = response.response.venue.rating;
                    setRatingState({ratings: new_rating})
                }
-             ).catch(() => {
+           ).catch(() => {
                console.log("foursquare API fetch error, rating is not available");
                });
         })
@@ -204,6 +207,7 @@ class App extends React.Component {
                 ratinglist={this.state.ratings}
             />
             <MapView
+                google={this.props.google}
                 restaurantlist={this.state.restaurant}
                 onMapClicked={this.onMapClicked}
                 onMarkerClick={this.onMarkerClick}
@@ -216,4 +220,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+// export default App;
+
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyC1kz_xU2fSVqJfm3WGbGKOr8PTGJ1fNLc"),
+})(App)

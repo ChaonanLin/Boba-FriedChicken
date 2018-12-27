@@ -7,6 +7,7 @@
 #maincontent {
     display:flex;
     flex-wrap: wrap;
+    position: relative;
 }
 
 #banner {
@@ -19,11 +20,18 @@
     flex-wrap: wrap;
 }
 
-#banner h1 {
+#iWant {
     width: 45%;
+    height: 3em;
     text-align: right;
     margin: 223px auto 229px;
-    font-size: 3em;
+    font-size: 1.5em;
+    /* position: relative; */
+}
+#iWant h1 {
+    /* position: absolute; */
+    vertical-align: middle;
+    margin:0;
 }
 
 .select-box {
@@ -32,7 +40,7 @@
 }
 
 .select-box--box {
-    width: 45%;
+    width: 60%;
     position: relative;
     left: 0;
     margin: 226px auto 226px 15px;
@@ -52,9 +60,10 @@
     padding:0;
     display: inline-block;
     background-color: #aaa;
+    border-color: #aaa;
     position: absolute;
-    right:-1px;
-    top:-1px;
+    right:0px;
+    top:0px;
 }
 
 .select-box--arrow-down {
@@ -70,8 +79,8 @@
 
 .select-box--arrow-up {
     position: absolute;
-    top: 1em;
-    left: 0.7em;
+    top: 0.7em;
+    left: 0.6em;
     width: 0;
     height: 0;
     border-left: 0.8em solid transparent;
@@ -114,7 +123,7 @@
 }
 
 /* ListView CSS */
-.Container {
+.listContainer {
     width:48%;
     margin-top: 20px;
     position: relative;
@@ -128,12 +137,12 @@ ul {
 
 .card {
     display: flex;
-    flex-wrap: wrap; */
+    flex-wrap: wrap;
     background-color: #fff;
     border: 2px solid #ccc;
     font-family: Arial,sans-serif;
     margin: 20px auto 30px;
-    min-height: 180px;
+    min-height: 170px;
     padding: 0 3% 25px;
     text-align: left;
     width: 90%;
@@ -146,7 +155,7 @@ ul {
     display: block;
     margin: 10px 2%;
     width: 30%;
-    height: 150px;
+    height: 90%;
     position: absolute;
     right:2%;
 }
@@ -204,6 +213,60 @@ button {
   margin-left: 10px;
 }
 
-.end {
-    background-color:#f1f1f1;
+/* MapView */
+
+.mapContainer {
+    width: 48%;
+    height:880px;
+    position: relative;
+    margin: 36px 1%;
+}
+/* Padsize */
+@media screen and (max-width:865px) {
+    .mapContainer {
+        width: 90%;
+        order: 1;
+        height:300px;
+        margin: 20px 5%;
+    }
+    .listContainer {
+        order: 2;
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .select-box--box {
+        width: 65%;
+    }
+
+    .select-box--selected-item {
+        font-size: 1.3em;
+    }
+}
+
+/* phonesize */
+@media screen and (max-width:663px) {
+    #iWant {
+        width: 100%;
+        height: 3em;
+        text-align: center;
+        margin: 0 auto;
+    }
+    #iWant h1 {
+        padding-top: 170px;
+        vertical-align: middle;
+        margin:0;
+    }
+    .select-box {
+        width:100%;
+        display: inline-block;
+    }
+    .select-box--box {
+        width: 55%;
+        position: relative;
+        margin: 0 auto;
+    }
+    .select-box--selected-item {
+        font-size: 1.2em;
+    }
 }

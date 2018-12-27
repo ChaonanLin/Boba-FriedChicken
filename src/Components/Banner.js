@@ -12,7 +12,9 @@ class Banner extends React.Component {
                     <img src= {logo} alt="logo" />
                 </div>
                 <div id="banner">
-                    <h1>I want</h1>
+                    <div id="iWant">
+                        <h1>I want</h1>
+                    </div>
                     <Dropdown
                         items= {this.props.items}
                         onChangeQuery= {this.props.onChangeQuery}
