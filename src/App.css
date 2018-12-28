@@ -109,7 +109,7 @@
     border: 2px solid #aaa;
 }
 
-.select-box--items button {
+.select-box--items div {
     border-bottom: 1px solid #aaa;
     padding: 6px;
     padding-left: 10px;

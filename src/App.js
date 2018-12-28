@@ -84,12 +84,11 @@ class App extends React.Component {
     };
 
 //Haven't figure out how to link ListView click with the corresponding markers
-    onListClicked = (e) => {
-        console.log(e);
-        // this.setState({
-        //     selectedPlace:e.target,
-        //     showingInfoWindow: true
-        // })
+    onListClicked = (restaurantname) => {
+        // console.log(
+        //     this.refs.restaurantname
+        // );
+    this.refs.restaurantname.trigger( "click" )
     };
 
     componentDidMount() {
@@ -141,8 +140,8 @@ class App extends React.Component {
         let setPhotoState = this.setState.bind(this);
 
         const params = {
-          client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
-          client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
+          // client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
+          // client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
           limit: 1,
           v: '20181227',
         };
@@ -156,7 +155,7 @@ class App extends React.Component {
                 new_photo[index] = response.response.photos.items[0].prefix +'300x500'+ response.response.photos.items[0].suffix;
                 setPhotoState({photos: new_photo})
             }).catch(() => {
-            alert("foursquare API fetch error, photo is not available");
+            console.log("foursquare API fetch error, photo is not available");
             });
         })
     }
@@ -164,8 +163,8 @@ class App extends React.Component {
     FetchRatings = (items) => {
         let setRatingState=this.setState.bind(this)
         const params = {
-          client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
-          client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
+          // client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
+          // client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
           v: '20181227',
         };
 
@@ -182,7 +181,7 @@ class App extends React.Component {
                    setRatingState({ratings: new_rating})
                }
            ).catch(() => {
-               alert("foursquare API fetch error, rating is not available");
+               console.log("foursquare API fetch error, rating is not available");
                });
         })
     }
@@ -225,7 +224,7 @@ class App extends React.Component {
 }
 
 // export default App;
-
+//Google Map Api error has been handled in the library I use
 export default GoogleApiWrapper({
   apiKey: ("AIzaSyC1kz_xU2fSVqJfm3WGbGKOr8PTGJ1fNLc"),
 })(App)

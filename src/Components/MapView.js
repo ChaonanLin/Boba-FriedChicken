@@ -4,7 +4,6 @@ import '../App.css';
 //to load Google map APIs and add Marker and InfoWindow components.
 import {Map, InfoWindow, Marker} from 'google-maps-react'
 
-
 export class MapView extends Component {
 
   render() {
@@ -14,7 +13,7 @@ export class MapView extends Component {
         height: '100%',
         }
     return (
-        <div className="mapContainer">
+        <div className="mapContainer" role="application">
           <Map
             google={this.props.google}
             zoom={12}
@@ -31,12 +30,14 @@ export class MapView extends Component {
                     name={restaurant.venue.name}
                     position={{lat:restaurant.venue.location.lat,lng:restaurant.venue.location.lng}}
                     onClick={this.props.onMarkerClick}
+                    ref={restaurant.venue.name}
                 />
             ))}
                 <InfoWindow
                     marker={this.props.activeMarker}
                     visible={this.props.showingInfoWindow}
                     ClassName="inforwindow"
+                    // position={{lat:restaurant.venue.location.lat,lng:restaurant.venue.location.lng}}
                 >
                     <div>
                     <h1>{this.props.selectedPlace.name}</h1>
