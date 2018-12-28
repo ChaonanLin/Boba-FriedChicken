@@ -156,7 +156,7 @@ class App extends React.Component {
                 new_photo[index] = response.response.photos.items[0].prefix +'300x500'+ response.response.photos.items[0].suffix;
                 setPhotoState({photos: new_photo})
             }).catch(() => {
-            console.log("foursquare API fetch error, photo is not available");
+            alert("foursquare API fetch error, photo is not available");
             });
         })
     }
@@ -182,7 +182,7 @@ class App extends React.Component {
                    setRatingState({ratings: new_rating})
                }
            ).catch(() => {
-               console.log("foursquare API fetch error, rating is not available");
+               alert("foursquare API fetch error, rating is not available");
                });
         })
     }
