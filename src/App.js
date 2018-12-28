@@ -42,7 +42,9 @@ class App extends React.Component {
             alert("This is the end of the list.")
         } else {
             this.setState((prevState) => ({
-                page: prevState.page + 1
+                page: prevState.page + 1,
+                selectedPlace:{},
+                showingInfoWindow:false
                 }),
                 this.FetchRestaurant
             )
@@ -55,7 +57,9 @@ class App extends React.Component {
         } else {
             this.setState(
                 (prevState) => ({
-                page: prevState.page - 1
+                page: prevState.page - 1,
+                selectedPlace:{},
+                showingInfoWindow:false
                 }),
                 this.FetchRestaurant
             )
