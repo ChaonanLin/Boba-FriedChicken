@@ -14,14 +14,10 @@ class RestaurantCard extends React.Component {
         //Conver the 10 points rating to 5 stars by rounding-off method
         const star= Math.round(this.props.rating/2)
         return(
-            //when the restarurant <li> element is clicked, invoke onCardClick props fucntion in ListView
-            //then, invoke onListClicked() in App.js; but haven't figure out how to get a corresponding object
-            // to pass in onCardClick?
-
             <li
                 className="card"
-                tabindex="0" 
-                onClick={({restaurantname})=>this.props.onCardClick({restaurantname})}
+                tabindex="0"
+                onClick={()=>this.props.onCardClick(this.props.name)}
                 onKeyPress={this.keypress}
                 role="button"
                 name="Restaurant Information"

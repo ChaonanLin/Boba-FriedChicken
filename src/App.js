@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Banner from './Components/Banner.js'
 import ListView from './Components/ListView.js'
-import MapView from './Components/MapView'
+import MapView from './Components/MapView.js'
 import './App.css'
-import {GoogleApiWrapper} from 'google-maps-react'
+
 
 
 
@@ -19,8 +19,8 @@ class App extends React.Component {
             query:"boba",
             showingInfoWindow: false,
             activeMarker: {},
-            selectedPlace: {},
-            page:1
+            page:1,
+            selectedPlace:null
         }
     }
 
@@ -83,12 +83,8 @@ class App extends React.Component {
       }
     };
 
-//Haven't figure out how to link ListView click with the corresponding markers
     onListClicked = (restaurantname) => {
-        // console.log(
-        //     this.refs.restaurantname
-        // );
-    this.refs.restaurantname.trigger( "click" )
+        this.setState({selectedPlace: restaurantname})
     };
 
     componentDidMount() {
@@ -125,9 +121,9 @@ class App extends React.Component {
         ).then(
           response => {
               setRestaurantState({restaurant: response});
-              //Pass restaurant date to FrechPhoto()
+              //Pass restaurant data to FrechPhoto()
               this.FetchPhoto(response);
-              //Pass restaurant date to FrechRating()
+              //Pass restaurant data to FrechRating()
               this.FetchRatings(response);
           }
       ).catch(() => {
@@ -140,8 +136,8 @@ class App extends React.Component {
         let setPhotoState = this.setState.bind(this);
 
         const params = {
-          // client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
-          // client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
+          client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
+          client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
           limit: 1,
           v: '20181227',
         };
@@ -155,7 +151,7 @@ class App extends React.Component {
                 new_photo[index] = response.response.photos.items[0].prefix +'300x500'+ response.response.photos.items[0].suffix;
                 setPhotoState({photos: new_photo})
             }).catch(() => {
-            console.log("foursquare API fetch error, photo is not available");
+            alert("foursquare API fetch error, photo is not available");
             });
         })
     }
@@ -163,8 +159,8 @@ class App extends React.Component {
     FetchRatings = (items) => {
         let setRatingState=this.setState.bind(this)
         const params = {
-          // client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
-          // client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
+          client_id: "FLZVZU3QYRPWABKXRWKSMPP3GJJDGXE10HE1Q5WY1QWBRW3N",
+          client_secret: "HRBWH41DMUDZQOAATKOR1KX4KVMJLBG3RBPN2LUJOYOMFM51",
           v: '20181227',
         };
 
@@ -181,11 +177,10 @@ class App extends React.Component {
                    setRatingState({ratings: new_rating})
                }
            ).catch(() => {
-               console.log("foursquare API fetch error, rating is not available");
+               alert("foursquare API fetch error, rating is not available");
                });
         })
     }
-
 
    render() {
         return (
@@ -210,21 +205,16 @@ class App extends React.Component {
                 ratinglist={this.state.ratings}
             />
             <MapView
-                google={this.props.google}
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1kz_xU2fSVqJfm3WGbGKOr8PTGJ1fNLc&v=3.exp"
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div className="mapContainer" role="application"  />}
+                mapElement={<div style={{ height: `100%` }} />}
                 restaurantlist={this.state.restaurant}
-                onMapClicked={this.onMapClicked}
-                onMarkerClick={this.onMarkerClick}
-                activeMarker={this.state.activeMarker}
                 selectedPlace={this.state.selectedPlace}
-                showingInfoWindow={this.state.showingInfoWindow}
             />
           </div>
         );
   }
 }
 
-// export default App;
-//Google Map Api error has been handled in the library I use
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyC1kz_xU2fSVqJfm3WGbGKOr8PTGJ1fNLc"),
-})(App)
+export default App;

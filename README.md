@@ -20,7 +20,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Google Map API and Library
 
-This project used [Google-maps-react](https://github.com/fullstackreact/google-maps-react#marker) library to load Google map APIs and add Marker and InfoWindow components.
+This project used [react-google-maps](https://tomchentw.github.io/react-google-maps/) library to load Google map APIs and add Marker and InfoWindow components.
 
 ### Foursquare API
 
